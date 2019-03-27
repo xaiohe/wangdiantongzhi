@@ -10,7 +10,7 @@ public abstract class AuthorService {
 	private static final Logger logger = LoggerFactory.getLogger(AuthorService.class);
 	@Value("${wechat.appid}")
 	private String appid;
-	
+	String a=null;
 	@Value("${wechat.secret}")
 	private String secret;
 	//执行授权处理
