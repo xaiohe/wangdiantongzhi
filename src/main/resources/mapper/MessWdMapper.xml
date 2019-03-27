@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.everflourish.act.app.domain.dao.MessWdMapper">
+  <resultMap id="BaseResultMap" type="com.everflourish.act.app.domain.bean.MessWd">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="mess_id" jdbcType="VARCHAR" property="messId" />
+    <result column="wd_no" jdbcType="INTEGER" property="wdNo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, mess_id, wd_no
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mess_wd
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from mess_wd
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.everflourish.act.app.domain.bean.MessWd">
+    insert into mess_wd (id, mess_id, wd_no
+      )
+    values (#{id,jdbcType=VARCHAR}, #{messId,jdbcType=VARCHAR}, #{wdNo,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.everflourish.act.app.domain.bean.MessWd">
+    insert into mess_wd
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="messId != null">
+        mess_id,
+      </if>
+      <if test="wdNo != null">
+        wd_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="messId != null">
+        #{messId,jdbcType=VARCHAR},
+      </if>
+      <if test="wdNo != null">
+        #{wdNo,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.everflourish.act.app.domain.bean.MessWd">
+    update mess_wd
+    <set>
+      <if test="messId != null">
+        mess_id = #{messId,jdbcType=VARCHAR},
+      </if>
+      <if test="wdNo != null">
+        wd_no = #{wdNo,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.everflourish.act.app.domain.bean.MessWd">
+    update mess_wd
+    set mess_id = #{messId,jdbcType=VARCHAR},
+      wd_no = #{wdNo,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

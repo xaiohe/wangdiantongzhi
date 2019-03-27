@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.everflourish.act.app.domain.dao.DeclareReadRecordMapper">
+  <resultMap id="BaseResultMap" type="com.everflourish.act.app.domain.bean.DeclareReadRecord">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="dec_id" jdbcType="VARCHAR" property="decId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="wd_no" jdbcType="VARCHAR" property="wdNo" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="us_read_status" jdbcType="INTEGER" property="usReadStatus" />
+    <result column="ce_read_status" jdbcType="INTEGER" property="ceReadStatus" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.everflourish.act.app.domain.bean.DeclareReadRecord">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="image_url" jdbcType="LONGVARCHAR" property="imageUrl" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, dec_id, create_time, modify_time, wd_no, phone, create_by, us_read_status, 
+    ce_read_status
+  </sql>
+  <sql id="Blob_Column_List">
+    content, image_url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from declare_read_record
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from declare_read_record
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.everflourish.act.app.domain.bean.DeclareReadRecord">
+    insert into declare_read_record (id, user_id, dec_id, 
+      create_time, modify_time, wd_no, 
+      phone, create_by, us_read_status, 
+      ce_read_status, content, image_url
+      )
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{decId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, #{wdNo,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{usReadStatus,jdbcType=INTEGER}, 
+      #{ceReadStatus,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}, #{imageUrl,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.everflourish.act.app.domain.bean.DeclareReadRecord">
+    insert into declare_read_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="decId != null">
+        dec_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="wdNo != null">
+        wd_no,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="usReadStatus != null">
+        us_read_status,
+      </if>
+      <if test="ceReadStatus != null">
+        ce_read_status,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="imageUrl != null">
+        image_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="decId != null">
+        #{decId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wdNo != null">
+        #{wdNo,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="usReadStatus != null">
+        #{usReadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="ceReadStatus != null">
+        #{ceReadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="imageUrl != null">
+        #{imageUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.everflourish.act.app.domain.bean.DeclareReadRecord">
+    update declare_read_record
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="decId != null">
+        dec_id = #{decId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wdNo != null">
+        wd_no = #{wdNo,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="usReadStatus != null">
+        us_read_status = #{usReadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="ceReadStatus != null">
+        ce_read_status = #{ceReadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="imageUrl != null">
+        image_url = #{imageUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.everflourish.act.app.domain.bean.DeclareReadRecord">
+    update declare_read_record
+    set user_id = #{userId,jdbcType=VARCHAR},
+      dec_id = #{decId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      wd_no = #{wdNo,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      us_read_status = #{usReadStatus,jdbcType=INTEGER},
+      ce_read_status = #{ceReadStatus,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR},
+      image_url = #{imageUrl,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.everflourish.act.app.domain.bean.DeclareReadRecord">
+    update declare_read_record
+    set user_id = #{userId,jdbcType=VARCHAR},
+      dec_id = #{decId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      wd_no = #{wdNo,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      us_read_status = #{usReadStatus,jdbcType=INTEGER},
+      ce_read_status = #{ceReadStatus,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
